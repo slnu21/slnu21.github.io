@@ -1,0 +1,236 @@
+---
+# 이 front matter(빈 ---)가 있어야 Jekyll 이 SCSS 를 main.css 로 컴파일합니다.
+---
+
+/* ============================================================
+   디자인 토큰 (다크/라이트) — design-mockup.html 과 동일 팔레트
+   ============================================================ */
+:root[data-theme="dark"] {
+  --bg:#0d1117; --surface:#161b22; --border:#30363d;
+  --text:#e6edf3; --muted:#8b949e; --accent:#58a6ff; --accent2:#3fb950;
+  --code-bg:#161b22;
+}
+:root[data-theme="light"] {
+  --bg:#ffffff; --surface:#f6f8fa; --border:#d0d7de;
+  --text:#1f2328; --muted:#636c76; --accent:#0969da; --accent2:#1a7f37;
+  --code-bg:#f6f8fa;
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  background:var(--bg); color:var(--text);
+  font-family:"Pretendard","Pretendard Variable",-apple-system,"Segoe UI",sans-serif;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  transition:background .2s ease, color .2s ease;
+}
+
+a { color:var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+.wrap { max-width:960px; margin:0 auto; padding:0 24px; }
+.site-main { min-height:60vh; padding-bottom:40px; }
+
+/* ---------- 내비게이션 ---------- */
+.site-nav {
+  position:sticky; top:0; z-index:20;
+  backdrop-filter:blur(8px);
+  background:color-mix(in srgb, var(--bg) 85%, transparent);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner { display:flex; align-items:center; justify-content:space-between; height:60px; }
+.brand { font-weight:700; font-size:1.1rem; color:var(--text); }
+.brand:hover { text-decoration:none; }
+.brand-accent { color:var(--accent2); }
+.menu { display:flex; gap:22px; align-items:center; }
+.menu a { color:var(--muted); font-size:.95rem; }
+.menu a:hover, .menu a.active { color:var(--text); text-decoration:none; }
+.toggle, .nav-burger {
+  cursor:pointer; background:none; border:1px solid var(--border);
+  color:var(--text); border-radius:8px; padding:4px 10px; font-size:.9rem;
+}
+.nav-burger { display:none; }
+:root[data-theme="dark"] .t-light { display:none; }
+:root[data-theme="light"] .t-dark { display:none; }
+
+/* ---------- 히어로 (홈) ---------- */
+.hero {
+  padding:80px 0 48px;
+  display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center;
+}
+.hero h1 { font-size:2.6rem; line-height:1.15; margin-bottom:8px; }
+.hero h1 .accent { color:var(--accent); }
+.hero .role-line { color:var(--accent2); font-weight:600; font-size:1.05rem; margin-bottom:12px; }
+.hero .lead { color:var(--muted); font-size:1.1rem; max-width:50ch; margin-bottom:22px; }
+.cta a {
+  display:inline-block; border:1px solid var(--border); border-radius:10px;
+  padding:9px 16px; margin:0 10px 10px 0; color:var(--text); font-size:.95rem;
+}
+.cta a:hover { border-color:var(--accent); text-decoration:none; }
+.cta a.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+.avatar {
+  width:150px; height:150px; border-radius:50%; flex:none; object-fit:cover;
+  background:linear-gradient(135deg, var(--accent), var(--accent2));
+  border:1px solid var(--border);
+}
+
+/* ---------- 섹션 제목 ---------- */
+h2.sec {
+  font-size:1.4rem; margin:48px 0 18px;
+  display:flex; align-items:center; gap:10px;
+}
+h2.sec::before {
+  content:""; width:4px; height:22px; background:var(--accent2); border-radius:2px;
+}
+.sec-head { display:flex; align-items:baseline; justify-content:space-between; }
+.sec-head .more { font-size:.9rem; }
+
+/* ---------- 카드 그리드 (프로젝트) ---------- */
+.grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:16px; }
+.card {
+  background:var(--surface); border:1px solid var(--border); border-radius:12px;
+  padding:18px; transition:transform .15s ease, border-color .15s ease; color:var(--text);
+}
+.card:hover { transform:translateY(-3px); border-color:var(--accent); text-decoration:none; }
+.card h3 { font-size:1.05rem; margin-bottom:6px; }
+.card .blurb { color:var(--muted); font-size:.9rem; min-height:38px; }
+.tags { margin-top:10px; }
+.tag {
+  display:inline-block; margin:0 6px 6px 0; padding:1px 9px; font-size:.74rem;
+  border-radius:999px; color:var(--accent);
+  background:color-mix(in srgb, var(--accent) 18%, transparent);
+}
+a.tag:hover { text-decoration:none; }
+.card .meta { display:flex; gap:14px; color:var(--muted); font-size:.82rem; margin-top:12px; }
+
+/* 실무/비공개 프로젝트 카드 */
+.private-card { cursor:default; }
+a.private-card { cursor:pointer; }
+.card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+.card-top h3 { margin-bottom:0; }
+.badge-private {
+  flex:none; font-size:.72rem; padding:2px 8px; border-radius:999px;
+  color:var(--muted); border:1px solid var(--border); background:var(--bg);
+  white-space:nowrap;
+}
+
+/* ---------- 2단 (최근 글 / 경력) ---------- */
+.two { display:grid; grid-template-columns:1.2fr .8fr; gap:36px; }
+
+/* ---------- 글 목록 ---------- */
+.post-row { padding:14px 0; border-bottom:1px solid var(--border); }
+.post-title { font-size:1.05rem; font-weight:600; color:var(--text); }
+.post-date { color:var(--muted); font-size:.8rem; margin-top:2px; }
+.post-excerpt { color:var(--muted); font-size:.9rem; margin-top:4px; }
+.archive-list .post-row { display:flex; justify-content:space-between; gap:12px; }
+
+/* ---------- 경력 타임라인 ---------- */
+.exp { padding:10px 0 14px; border-left:2px solid var(--border); padding-left:16px; margin-left:4px; }
+.exp .role { font-weight:600; }
+.exp .org { color:var(--muted); font-size:.88rem; }
+.exp ul { margin:6px 0 0 18px; color:var(--muted); font-size:.9rem; }
+
+/* ---------- 페이지 / 글 본문 ---------- */
+.page-title, .post-title-lg { font-size:2rem; margin:32px 0 8px; }
+.page-subtitle, .post-meta { color:var(--muted); margin-bottom:20px; }
+.prose { max-width:72ch; }
+.prose h2 { font-size:1.5rem; margin:36px 0 12px; }
+.prose h3 { font-size:1.2rem; margin:28px 0 10px; }
+.prose p, .prose li { margin-bottom:12px; }
+.prose ul, .prose ol { margin:0 0 16px 22px; }
+.prose img { max-width:100%; border-radius:8px; }
+.prose blockquote {
+  border-left:3px solid var(--accent); padding:4px 16px; margin:16px 0;
+  color:var(--muted); background:var(--surface); border-radius:0 8px 8px 0;
+}
+.prose code {
+  background:var(--code-bg); border:1px solid var(--border);
+  border-radius:6px; padding:1px 6px; font-size:.88em;
+  font-family:"SFMono-Regular",Consolas,monospace;
+}
+.prose pre {
+  background:var(--code-bg); border:1px solid var(--border);
+  border-radius:10px; padding:16px; overflow-x:auto; margin:16px 0;
+}
+.prose pre code { background:none; border:none; padding:0; }
+.prose table { width:100%; border-collapse:collapse; margin:16px 0; }
+.prose th, .prose td { border:1px solid var(--border); padding:8px 12px; text-align:left; }
+.prose th { background:var(--surface); }
+
+/* ---------- 글 하단 내비 / 댓글 ---------- */
+.post-nav { display:flex; justify-content:space-between; gap:16px; margin:40px 0 8px; font-size:.95rem; }
+.comments { margin-top:40px; padding-top:8px; border-top:1px solid var(--border); }
+
+/* ---------- 푸터 ---------- */
+.site-footer { border-top:1px solid var(--border); margin-top:64px; padding:28px 0; }
+.foot-links { display:flex; gap:18px; flex-wrap:wrap; justify-content:center; margin-bottom:10px; }
+.foot-links a { color:var(--muted); font-size:.9rem; }
+.foot-meta { color:var(--muted); font-size:.82rem; text-align:center; }
+
+/* ---------- 홈 헤더 (글 목록 상단) ---------- */
+.home-head { padding:40px 0 8px; border-bottom:1px solid var(--border); margin-bottom:8px; }
+.home-title { font-size:2rem; margin-bottom:4px; }
+.home-tagline { color:var(--muted); font-size:1.05rem; }
+
+/* ---------- 코드 복사 버튼 ---------- */
+.copy-btn {
+  position:absolute; top:8px; right:8px;
+  font-size:.74rem; padding:3px 9px; border-radius:6px; cursor:pointer;
+  color:var(--muted); background:var(--bg); border:1px solid var(--border);
+  opacity:0; transition:opacity .15s ease;
+}
+.prose pre:hover .copy-btn { opacity:1; }
+.copy-btn:hover { color:var(--text); border-color:var(--accent); }
+.copy-btn.copied { color:var(--accent2); border-color:var(--accent2); }
+
+/* ---------- 목차 (TOC) ---------- */
+.toc {
+  background:var(--surface); border:1px solid var(--border); border-radius:10px;
+  padding:14px 18px; margin:0 0 28px; max-width:72ch; font-size:.92rem;
+}
+.toc-head { font-weight:600; margin-bottom:8px; color:var(--muted); }
+.toc-list { list-style:none; margin:0; padding:0; }
+.toc-list li { padding:2px 0; }
+.toc-list .toc-h3 { padding-left:16px; font-size:.88rem; }
+.toc-list a { color:var(--muted); }
+.toc-list a:hover, .toc-list a.active { color:var(--accent); text-decoration:none; }
+
+/* ---------- 시리즈 박스 ---------- */
+.series-box {
+  background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent2);
+  border-radius:0 10px 10px 0; padding:14px 18px; margin:0 0 28px; max-width:72ch;
+}
+.series-head { font-weight:600; margin-bottom:8px; }
+.series-list { margin:0; padding-left:20px; }
+.series-list li { padding:2px 0; color:var(--muted); }
+.series-list li.current { color:var(--text); font-weight:600; }
+.series-now { color:var(--accent2); font-size:.85rem; }
+
+/* 카테고리/시리즈 모음 페이지 */
+.series-title { font-size:1.15rem; margin:28px 0 10px; }
+.series-title .count { color:var(--muted); font-weight:400; font-size:.9rem; }
+
+/* ---------- 검색 ---------- */
+.search-input {
+  width:100%; max-width:72ch; padding:11px 14px; font-size:1rem;
+  background:var(--surface); color:var(--text);
+  border:1px solid var(--border); border-radius:10px; margin-bottom:12px;
+}
+.search-input:focus { outline:none; border-color:var(--accent); }
+.search-status { color:var(--muted); font-size:.9rem; margin-bottom:12px; }
+
+/* ---------- 반응형 ---------- */
+@media (max-width:720px) {
+  .menu {
+    display:none; position:absolute; top:60px; right:0; left:0;
+    flex-direction:column; gap:0; background:var(--bg);
+    border-bottom:1px solid var(--border); padding:8px 24px 16px;
+  }
+  .menu.open { display:flex; }
+  .menu a { padding:10px 0; }
+  .nav-burger { display:inline-block; }
+  .copy-btn { opacity:1; } /* 모바일은 hover 없으니 항상 표시 */
+}

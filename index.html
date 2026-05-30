@@ -1,0 +1,17 @@
+---
+layout: default
+title: null
+---
+
+<header class="home-head">
+  <h1 class="home-title">{{ site.title }}</h1>
+  <p class="home-tagline">{{ site.tagline }}</p>
+</header>
+
+<!-- 최신 글 목록. 글이 많아지면 jekyll-paginate 로 페이지네이션 전환 가능 -->
+<div class="post-list">
+  {% for post in site.posts %}
+    {% include post-card.html post=post %}
+  {% endfor %}
+  {% if site.posts.size == 0 %}<p class="post-excerpt">아직 글이 없습니다.</p>{% endif %}
+</div>

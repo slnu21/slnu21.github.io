@@ -1,0 +1,56 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title-lg">{{ page.title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+      {% assign words = content | strip_html | number_of_words %}
+      · {{ words | divided_by: 300 | plus: 1 }} min read
+      {% if page.categories.size > 0 %} · <a href="{{ '/categories/' | relative_url }}#cat-{{ page.categories.first | slugify }}">{{ page.categories | join: ", " }}</a>{% endif %}
+    </div>
+    {% if page.tags.size > 0 %}
+      <div class="tags">
+        {% for t in page.tags %}<a class="tag" href="{{ '/tags/' | relative_url }}#{{ t | slugify }}">{{ t }}</a>{% endfor %}
+      </div>
+    {% endif %}
+  </header>
+
+  <!-- 시리즈 박스: front matter 에 series: "이름" 이 있으면 같은 시리즈 글 모음 -->
+  {% if page.series %}
+    {% assign series_posts = site.posts | where: "series", page.series | sort: "date" %}
+    {% if series_posts.size > 1 %}
+    <aside class="series-box">
+      <div class="series-head">📚 시리즈: {{ page.series }} ({{ series_posts.size }}편)</div>
+      <ol class="series-list">
+        {% for sp in series_posts %}
+          <li{% if sp.url == page.url %} class="current"{% endif %}>
+            {% if sp.url == page.url %}{{ sp.title }} <span class="series-now">(현재 글)</span>
+            {% else %}<a href="{{ sp.url | relative_url }}">{{ sp.title }}</a>{% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+    </aside>
+    {% endif %}
+  {% endif %}
+
+  <!-- 목차: toc.js 가 본문 h2/h3 를 스캔해 채움. 헤딩 2개 미만이면 자동 숨김 -->
+  <nav class="toc" id="toc" hidden>
+    <div class="toc-head">목차</div>
+    <ul class="toc-list"></ul>
+  </nav>
+
+  <div class="prose" id="post-content">
+    {{ content }}
+  </div>
+
+  <nav class="post-nav">
+    {% if page.previous %}<a class="prev" href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% endif %}
+    {% if page.next %}<a class="next" href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
+  </nav>
+
+  {% include comments.html %}
+</article>
+
+<script src="{{ '/assets/js/toc.js' | relative_url }}"></script>

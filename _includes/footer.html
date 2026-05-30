@@ -1,0 +1,15 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-links">
+      {% for item in site.data.navigation.secondary %}
+        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+      {% endfor %}
+      {% if site.author.github %}<a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
+      {% if site.author.linkedin %}<a href="https://linkedin.com/{{ site.author.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>{% endif %}
+    </div>
+    <p class="foot-meta">
+      © {{ 'now' | date: "%Y" }} {{ site.author.name }} · Built with Jekyll &amp; GitHub Pages ·
+      댓글은 GitHub Issues 로 운영됩니다
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,22 @@
+<nav class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      SlnU<span class="brand-accent">.dev</span>
+    </a>
+
+    <button class="nav-burger" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+
+    <div class="menu">
+      {% for item in site.data.navigation.main %}
+        {% assign cur = page.url | default: "/" %}
+        <a href="{{ item.url | relative_url }}"
+           {% if item.url == "/" and cur == "/" %}class="active"{% elsif item.url != "/" and cur contains item.url %}class="active"{% endif %}>
+          {{ item.title }}
+        </a>
+      {% endfor %}
+      <button class="toggle" id="theme-toggle" aria-label="다크/라이트 전환">
+        <span class="t-dark">🌙</span><span class="t-light">☀️</span>
+      </button>
+    </div>
+  </div>
+</nav>

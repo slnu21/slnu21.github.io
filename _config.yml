@@ -1,0 +1,63 @@
+# ============================================================
+#  SlnU 블로그 - Jekyll 설정 (글 중심 공간)
+# ============================================================
+
+# --- 사이트 기본 정보 ---
+title: "SlnU"
+tagline: "기록하고 공유하는 개발 노트"
+description: "공부하고 정리한 내용을 기록하는 블로그"
+lang: ko-KR
+url: "https://slnu21.github.io"   # User Page 루트 도메인
+baseurl: ""                            # User Page 이므로 빈 값
+
+# --- 작성자 (SEO 용 최소 정보만) ---
+author:
+  name: "SlnU"
+
+# --- 댓글 (Utterances / GitHub Issues 기반) ---
+# repo 는 공개 레포여야 하며, https://github.com/apps/utterances 설치 필요
+comments:
+  provider: utterances
+  utterances:
+    repo: "slnu21/slnu21.github.io"
+    issue_term: "pathname"
+    label: "💬 comment"
+    theme_light: "github-light"
+    theme_dark: "github-dark"
+
+# --- 글/페이지 기본값 ---
+permalink: /blog/:year/:month/:day/:title/
+
+defaults:
+  - scope: { path: "", type: "posts" }
+    values: { layout: "post" }
+  - scope: { path: "_pages" }
+    values: { layout: "page" }
+
+# --- _pages 폴더 포함 (언더스코어 폴더는 기본 미처리) ---
+include: ["_pages"]
+
+# --- 마크다운 / 코드 하이라이트 ---
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  toc_levels: 2..3
+
+# --- 플러그인 (모두 GitHub Pages 화이트리스트) ---
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# --- 빌드 제외 ---
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - design-mockup.html   # 단독 시안: 사이트 빌드에서 제외(직접 열어 확인)
+
+# --- 타임존 ---
+timezone: Asia/Seoul

@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<article class="page">
+  {% if page.title %}<h1 class="page-title">{{ page.title }}</h1>{% endif %}
+  {% if page.subtitle %}<p class="page-subtitle">{{ page.subtitle }}</p>{% endif %}
+  <div class="prose">{{ content }}</div>
+
+  {% assign postsByYear = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+  {% for year in postsByYear %}
+    <h2 class="sec">{{ year.name }}</h2>
+    <div class="archive-list">
+      {% for post in year.items %}
+        <div class="post-row">
+          <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span class="post-date">{{ post.date | date: "%m-%d" }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</article>

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'ko' }}">
+{% include head.html %}
+<body>
+  {% include header.html %}
+  <main class="wrap site-main">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/copy-code.js' | relative_url }}"></script>
+</body>
+</html>

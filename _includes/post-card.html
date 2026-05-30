@@ -1,0 +1,8 @@
+<article class="post-row">
+  <a class="post-title" href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a>
+  <div class="post-date">
+    {{ include.post.date | date: "%Y-%m-%d" }}
+    {% if include.post.categories.size > 0 %} · {{ include.post.categories | join: ", " }}{% endif %}
+  </div>
+  {% if include.post.excerpt %}<p class="post-excerpt">{{ include.post.excerpt | strip_html | truncate: 110 }}</p>{% endif %}
+</article>

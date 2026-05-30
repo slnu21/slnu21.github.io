@@ -1,0 +1,19 @@
+# 상단 내비게이션 메뉴 - 여기만 수정하면 헤더가 바뀜
+main:
+  - title: "홈"
+    url: /
+  - title: "카테고리"
+    url: /categories/
+  - title: "태그"
+    url: /tags/
+  - title: "검색"
+    url: /search/
+  - title: "소개"
+    url: /about/
+
+# 보조 링크 (푸터 등)
+secondary:
+  - title: "아카이브"
+    url: /archive/
+  - title: "RSS"
+    url: /feed.xml

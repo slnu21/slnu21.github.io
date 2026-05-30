@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SlnU — 디자인 시안 (단독 미리보기)</title>
+<!--
+  요구사항 7: 호스팅될 페이지의 디자인 시안.
+  이 파일은 빌드 없이 브라우저로 바로 열어 디자인을 확인하기 위한 단독 버전입니다.
+  실제 사이트는 동일한 팔레트/레이아웃을 Jekyll(_layouts, assets/css/main.scss)로 구현합니다.
+-->
+<style>
+  :root[data-theme="dark"]{
+    --bg:#0d1117; --surface:#161b22; --border:#30363d;
+    --text:#e6edf3; --muted:#8b949e; --accent:#58a6ff; --accent2:#3fb950;
+  }
+  :root[data-theme="light"]{
+    --bg:#ffffff; --surface:#f6f8fa; --border:#d0d7de;
+    --text:#1f2328; --muted:#636c76; --accent:#0969da; --accent2:#1a7f37;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);
+    font-family:"Pretendard",-apple-system,"Segoe UI",sans-serif;line-height:1.65}
+  a{color:var(--accent);text-decoration:none}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  nav{position:sticky;top:0;backdrop-filter:blur(8px);
+    background:color-mix(in srgb,var(--bg) 85%,transparent);
+    border-bottom:1px solid var(--border);z-index:10}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:700;font-size:1.1rem}
+  .menu{display:flex;gap:22px;align-items:center}
+  .menu a{color:var(--muted)} .menu a:hover{color:var(--text)}
+  .toggle{cursor:pointer;background:none;border:1px solid var(--border);
+    color:var(--text);border-radius:8px;padding:4px 10px}
+  .hero{padding:88px 0 56px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+  .hero h1{font-size:2.6rem;line-height:1.15;margin-bottom:12px}
+  .hero .accent{color:var(--accent)}
+  .hero p{color:var(--muted);font-size:1.1rem;max-width:46ch;margin-bottom:20px}
+  .cta a{display:inline-block;border:1px solid var(--border);border-radius:10px;
+    padding:9px 16px;margin-right:10px;color:var(--text)}
+  .cta a.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .avatar{width:140px;height:140px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));flex:none}
+  h2.sec{font-size:1.4rem;margin:48px 0 18px;display:flex;align-items:center;gap:10px}
+  h2.sec::before{content:"";width:4px;height:22px;background:var(--accent2);border-radius:2px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:18px;transition:.15s}
+  .card:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .card h3{font-size:1.05rem;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:.9rem;min-height:38px}
+  .meta{display:flex;gap:14px;color:var(--muted);font-size:.82rem;margin-top:12px}
+  .tag{display:inline-block;background:color-mix(in srgb,var(--accent) 18%,transparent);
+    color:var(--accent);border-radius:999px;padding:1px 9px;font-size:.74rem;margin-right:6px}
+  .two{display:grid;grid-template-columns:1.2fr .8fr;gap:36px}
+  .post{padding:14px 0;border-bottom:1px solid var(--border)}
+  .post .date{color:var(--muted);font-size:.8rem}
+  .exp{padding:12px 0;border-left:2px solid var(--border);padding-left:16px;margin-left:4px}
+  .exp .role{font-weight:600}.exp .org{color:var(--muted);font-size:.88rem}
+  footer{border-top:1px solid var(--border);margin-top:64px;padding:28px 0;
+    color:var(--muted);font-size:.85rem;text-align:center}
+  @media(max-width:720px){.hero,.two{grid-template-columns:1fr}.avatar{display:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <span class="brand">SlnU<span style="color:var(--accent2)">.dev</span></span>
+  <div class="menu">
+    <a href="#">홈</a><a href="#">블로그</a><a href="#">프로젝트</a><a href="#">소개</a>
+    <button class="toggle" onclick="t()">🌙 / ☀️</button>
+  </div>
+</div></nav>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <h1>안녕하세요, <span class="accent">SlnU</span>입니다.</h1>
+      <p>백엔드 시스템을 설계하고 만듭니다. 분산 처리, 데이터 파이프라인,
+         개발자 경험에 관심이 많습니다.</p>
+      <div class="cta">
+        <a class="primary" href="#">프로젝트 보기</a>
+        <a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">이력서(PDF)</a>
+      </div>
+    </div>
+    <div class="avatar"></div>
+  </section>
+
+  <h2 class="sec">Featured Projects</h2>
+  <div class="grid">
+    <a class="card" href="#"><h3>awesome-backend</h3>
+      <p>Kafka 기반 이벤트 파이프라인</p>
+      <div><span class="tag">Kotlin</span><span class="tag">Kafka</span></div>
+      <div class="meta"><span>★ 120</span><span>● Kotlin</span></div></a>
+    <a class="card" href="#"><h3>cli-tool</h3>
+      <p>사내 배포 자동화 CLI</p>
+      <div><span class="tag">Go</span></div>
+      <div class="meta"><span>★ 88</span><span>● Go</span></div></a>
+    <a class="card" href="#"><h3>rust-playground</h3>
+      <p>Rust 학습 및 실험 모음</p>
+      <div><span class="tag">Rust</span></div>
+      <div class="meta"><span>★ 40</span><span>● Rust</span></div></a>
+  </div>
+
+  <div class="two">
+    <div>
+      <h2 class="sec">Latest Writing</h2>
+      <div class="post"><a href="#">GitHub Pages로 블로그 만들기</a>
+        <div class="date">2026-05-30 · 5 min</div></div>
+      <div class="post"><a href="#">Kafka 컨슈머 튜닝기</a>
+        <div class="date">2026-05-12 · 8 min</div></div>
+      <div class="post"><a href="#">Rust 입문 한 달 회고</a>
+        <div class="date">2026-04-22 · 6 min</div></div>
+    </div>
+    <div>
+      <h2 class="sec">Experience</h2>
+      <div class="exp"><div class="role">Backend Engineer</div>
+        <div class="org">OO컴퍼니 · 2024–현재</div></div>
+      <div class="exp"><div class="role">Software Engineer</div>
+        <div class="org">△△스타트업 · 2022–2024</div></div>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 SlnU · Built with Jekyll &amp; GitHub Pages · 댓글은 GitHub Issues로 운영</footer>
+<script>
+  function t(){const r=document.documentElement;
+    r.dataset.theme = r.dataset.theme==="dark" ? "light":"dark";}
+</script>
+</body>
+</html>
