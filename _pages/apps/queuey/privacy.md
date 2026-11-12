@@ -20,12 +20,13 @@ permalink: /apps/queuey/privacy/
 
 ### 2. 데이터 저장 (사용자 기기에만)
 - 대기열 항목(제목·설명·답), 프로젝트 이름과 폴더 경로, 간식·꾸미기 상태는 **사용자 기기의 데이터 폴더**(`%APPDATA%\com.slnu21.queuey\`)의 `queuey.db`에만 저장됩니다. 앱이 데이터 형식을 올릴 때는 같은 폴더에 백업 사본(`queuey.db.v*.bak`)을 남깁니다.
-- 창 위치·배경·화면 설정과 로컬 연결 포트·연결 토큰은 같은 폴더의 `settings.json`에 저장됩니다.
+- 창 위치·배경·화면 설정, 로컬 연결 포트·연결 토큰, 내보내기를 켠 프로젝트와 문서 경로는 같은 폴더의 `settings.json`에 저장됩니다.
 - **Microsoft Store 설치판**은 Windows가 위 폴더를 앱 전용 자리(`%LOCALAPPDATA%\Packages\<앱 패키지>\LocalCache\Roaming\com.slnu21.queuey\`)로 옮겨 저장하며, 앱을 제거하면 함께 삭제됩니다.
 - 위 데이터는 사용자 기기를 벗어나지 않으며, 사용자가 직접 지울 수 있습니다.
 
 ### 3. 프로젝트 폴더
 - 프로젝트를 구분하려고, 사용자가 고른 폴더나 연결된 에이전트가 알려 준 작업 폴더에서 **`.git` 안의 작은 설정 파일만** 읽어 저장소 루트를 찾습니다. 소스 파일 내용은 읽지 않으며, git 등 다른 프로그램을 실행하지 않습니다.
+- **대기열 내보내기(켠 경우만)**: 사용자가 프로젝트마다 켜면, 그 프로젝트 폴더 **안**에서 사용자가 고른 마크다운 문서 하나(기본 `docs/TASKS.md`)에 대기열 사본(하는 중·대기·최근 끝남과 답)을 적습니다. 문서 안 큐이 구역(`queuey:begin`~`queuey:end`)만 바꾸고 나머지는 건드리지 않으며, 프로젝트 폴더 밖이나 링크 파일에는 쓰지 않습니다. 기본은 꺼짐이고, 끄면 더 쓰지 않습니다. 이 문서를 커밋하거나 외부로 보내지 않습니다.
 - 연결 방법 창의 "복사" 버튼을 누르면 안내 문구를 클립보드에 씁니다(사용자가 누를 때만).
 
 ### 4. 감시하지 않습니다
@@ -47,7 +48,7 @@ permalink: /apps/queuey/privacy/
 본 앱은 개인정보를 수집하지 않으므로, 아동을 포함한 어떤 사용자로부터도 개인정보를 수집하지 않습니다.
 
 ### 8. 방침의 변경
-외부와 통신하거나 사용자 기기의 다른 파일에 쓰는 기능(예: 대기열을 저장소 문서로 내보내기)을 도입할 경우, 본 방침을 사전에 갱신하고 릴리스 노트 또는 스토어 페이지에서 고지합니다.
+외부와 통신하거나 위에 적지 않은 파일에 쓰는 기능을 도입할 경우, 본 방침을 사전에 갱신하고 릴리스 노트 또는 스토어 페이지에서 고지합니다.
 
 ### 9. 문의
 개인정보 관련 문의는 `raltlsdn@naver.com` 로 연락 주시기 바랍니다.
@@ -63,12 +64,13 @@ The App collects no personal information. There is no account or sign-in, and th
 
 ### 2. Data Storage (On Your Device Only)
 - Queue items (titles, descriptions, answers), project names and folder paths, and snack/dress-up state are stored **only in the data folder on your device** (`%APPDATA%\com.slnu21.queuey\`) in `queuey.db`. When the App upgrades its data format, it leaves a backup copy (`queuey.db.v*.bak`) in the same folder.
-- Window position, backdrop and display settings, and the local connection port and token, are stored in `settings.json` in the same folder.
+- Window position, backdrop and display settings, the local connection port and token, and which projects export to which document, are stored in `settings.json` in the same folder.
 - In the **Microsoft Store edition**, Windows keeps that folder in an app-private location (`%LOCALAPPDATA%\Packages\<app package>\LocalCache\Roaming\com.slnu21.queuey\`), and it is removed when you uninstall the App.
 - This data never leaves your device, and you can delete it yourself.
 
 ### 3. Project Folders
 - To tell projects apart, the App reads **only the small configuration files inside `.git`** in a folder you choose, or in the working folder a connected agent reports, to find the repository root. It does not read your source files and does not run git or any other program.
+- **Queue export (only if you turn it on)**: When you turn it on for a project, the App writes a copy of the queue (in progress, waiting, recently finished and answered) to one Markdown document you choose **inside** that project folder (default `docs/TASKS.md`). It changes only the Queuey section of the document (`queuey:begin` to `queuey:end`) and leaves the rest untouched, and it never writes outside the project folder or to linked files. It is off by default and stops writing when you turn it off. The App does not commit this document or send it anywhere.
 - When you press "Copy" in the connection window, the App writes the instructions to the clipboard (only when you press it).
 
 ### 4. No Monitoring
@@ -90,7 +92,7 @@ The App does not monitor keyboard or mouse input, cursor position, or the active
 Because the App collects no personal information, it collects none from children or any other users.
 
 ### 8. Changes to This Policy
-If features that communicate externally or write to other files on your device (for example, exporting the queue to a repository document) are introduced, this policy will be updated in advance and disclosed in the release notes or on the store page.
+If features that communicate externally or write to files not described above are introduced, this policy will be updated in advance and disclosed in the release notes or on the store page.
 
 ### 9. Contact
 For privacy inquiries, please contact `raltlsdn@naver.com`.
