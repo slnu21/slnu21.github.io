@@ -15,6 +15,7 @@ permalink: /apps/queuey/
 ### 문서
 - [개인정보 처리방침](/apps/queuey/privacy/)
 - [최종 사용자 라이선스 계약(EULA)](/apps/queuey/eula/)
+- [오픈소스 고지](/apps/queuey/notices/)
 
 ### 지원
 문의·오류 제보: `raltlsdn@naver.com`
@@ -31,6 +32,7 @@ A small porter in the bottom-right corner of your screen carries your to-dos on 
 ### Documents
 - [Privacy Policy](/apps/queuey/privacy/)
 - [End User License Agreement (EULA)](/apps/queuey/eula/)
+- [Third-party notices](/apps/queuey/notices/)
 
 ### Support
 Questions and bug reports: `raltlsdn@naver.com`
